@@ -3,7 +3,10 @@ using HelloWorld2;
 
 Console.WriteLine("Hello, World!");
 Calculator2 calc = new Calculator2();
-calc.x = 10;
-calc.y = 20;
-int result = calc.Add();
-Console.WriteLine(result);
+calc.Number1 = 100;
+calc.Number2 = 20;
+int result1 = calc.Add();
+int result2 = calc.Subtract();
+Console.WriteLine(result1);
+Console.WriteLine(result2);
+
