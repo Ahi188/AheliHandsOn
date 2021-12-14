@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31912.275
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ADOconnection1", "ADOconnection1.csproj", "{A991032A-E0B0-4E21-80A2-757BEF666FC5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A991032A-E0B0-4E21-80A2-757BEF666FC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A991032A-E0B0-4E21-80A2-757BEF666FC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A991032A-E0B0-4E21-80A2-757BEF666FC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A991032A-E0B0-4E21-80A2-757BEF666FC5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6D7498E0-CD21-4FD6-8CF5-7047CE02EC57}
+	EndGlobalSection
+EndGlobal

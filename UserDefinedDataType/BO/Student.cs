@@ -10,8 +10,9 @@ namespace UserDefinedDataType
     {
         private string _FirstName; 
         private string _LastName;
-        private int _Roll; 
-        private double _MarksSecured;
+        private int? _Roll; 
+        private double? _MarksSecured;
+        private DateTime? _DOB;
         public string FirstName 
         { 
             get
@@ -30,17 +31,30 @@ namespace UserDefinedDataType
             set { _LastName = value; } //setter for lastname
         }
         
-        public int Roll 
+        public int? Roll 
         { 
             get { return _Roll; } //getter for rollnumber
             set { _Roll = value; } //setter for rollnumber
         }
 
        
-        public double MarksSecured
+        public double? MarksSecured
         {
             get { return _MarksSecured; }//getter for marks secured
             set { _MarksSecured = value; } //setter for marks secured
+        }
+        public String DateOfBirth {
+            get
+            {
+                if(_DOB==null) 
+                    return string.Empty;
+                return _DOB.Value.ToString("dd-mm-yyyy");
+            }
+            set
+            {
+                _DOB=Convert.ToDateTime(value);
+
+            } //dd-mm-yyyy
         }
     }
 }
