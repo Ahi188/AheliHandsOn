@@ -1,9 +1,29 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using System.Collections.Generic;
-
+//using UserDefinedDataType.BO;
+using UserDefinedDataType.DAL;
 using UserDefinedDataType;
 
-    List <Student> studentlist = null;
+var dal = new StudentDAL();
+    var studentlist=new List <Student>();
+studentlist = dal.GetStudents();
+dal.CreateStudentWithSP(new Student
+{
+    FirstName ="Ranen",
+    LastName ="Ghosh",
+    Roll=26,
+    MarksSecured=99.88,
+});
+var s = dal.GetStudentByRollNumber(1);
+var x = dal.UpdateStudent(new Student
+{
+    FirstName = "Aparna",
+    LastName = "Roy",
+    Roll = 27,
+    MarksSecured = 100
+});
+
+
     int size = 0;
 
 for (; ; )
@@ -14,24 +34,24 @@ for (; ; )
     Console.WriteLine("4. Find a Student by Roll.");
     Console.WriteLine("5. Change the Last-Name of all Students");
 
-    String input = Console.ReadLine();
+    string input = Console.ReadLine();
     if (input == "1")
     {
         Console.WriteLine("Enter the number of students:");
 
         int i = Convert.ToInt32(Console.ReadLine());
         size = i;
-        studentlist = new List<Student> { };
-        int j = 1;
+        //studentlist = new List<Student> { };
+        //int j = 1;
 
         if (i != 0)
         {
-            //while loop
-            do
+            //for loop
+            for(int j=0; j<i;j++ )
             {
 
-                Student student = new Student();
-                Console.WriteLine($"Enter details for student{j}");
+                var student = new Student();
+                Console.WriteLine($"Enter details for student{j+1}");
 
                 Console.WriteLine("Enter First Name");
                 student.FirstName = Console.ReadLine();
@@ -43,20 +63,20 @@ for (; ; )
                 student.Roll = Convert.ToInt32(Console.ReadLine());
 
                 Console.WriteLine("Enter Marks Secured");
-                student.MarksSecured = Convert.ToDouble(Console.ReadLine());
+                student.MarksSecured = Convert.ToDouble(Console.ReadLine()); 
                 studentlist.Add(student);
-                j++;
-
-            } while (j <= i);
+                 x = dal.CreateStudent(student);
+            }
+            
         }
 
     }
 
     else if (input == "2")
     {
-
+        int count= dal.getStudentCount();
         Console.WriteLine("Thank You for sharing your Information. Your Details are as follows:");
-        for (int i = 0; i < size; i++)
+        for (int i = 0; i < count; i++)
         {
             Student student = studentlist[i];
             Console.WriteLine($"FirstName: {student.FirstName}");

@@ -26,7 +26,7 @@ namespace UserDefinedDataType.DAL
                 using (SqlConnection sqlConnection = new SqlConnection(_connectionString))
                 {
                     sqlConnection.Open();
-                    string str = "select * from Student";
+                    string str = "select * from Student1";
                     using (SqlCommand command = new SqlCommand(str, sqlConnection))
                     {
                         var reader = command.ExecuteReader();
@@ -35,7 +35,7 @@ namespace UserDefinedDataType.DAL
                             var student = new Student();
                             student.FirstName = reader["First_Name"] as string;
                             student.LastName = reader["Last_Name"] as string;
-                            student.Roll = reader["Roll_No"] as int?;
+                            student.Roll = reader["Roll_number"] as int?;
                             student.MarksSecured = reader["Marks"] as double?;
                             studentList.Add(student);
                         }
@@ -53,7 +53,7 @@ namespace UserDefinedDataType.DAL
                 using (SqlConnection sqlConnection = new SqlConnection(_connectionString))
                 {
                     sqlConnection.Open();
-                    string str = "select * from Student where RollNo=@rollNo";
+                    string str = "select * from Student1 where Roll_number=@rollNo";
 
                     using (SqlCommand command = new SqlCommand(str, sqlConnection))
                     {
@@ -62,9 +62,9 @@ namespace UserDefinedDataType.DAL
                         while (reader.Read())
                         {
 
-                            student.FirstName = reader["FirstName"] as string;
-                            student.LastName = reader["Lastname"] as string;
-                            student.Roll = reader["RollNo"] as int?;
+                            student.FirstName = reader["First_name"] as string;
+                            student.LastName = reader["Last_name"] as string;
+                            student.Roll = reader["Roll_number"] as int?;
                             student.MarksSecured = reader["Marks"] as double?;
                         }
 
@@ -84,10 +84,10 @@ namespace UserDefinedDataType.DAL
                     using (SqlConnection sqlConnection = new SqlConnection(_connectionString))
                     {
                         sqlConnection.Open();
-                    string str = "INSERT INTO Student (FIRSTNAME, LASTNAME,ROLLNO,MARKS) VALUES (@firstName,@lastName,@rollNo,@marks);"
-                                + "SET @id=SCOPE_IDENTITY();";
+                    string str = "INSERT INTO Student1 (First_Name, Last_name,Roll_number,Marks) VALUES (@firstName,@lastName,@rollNo,@marks);"
+                                + "SET @Id=SCOPE_IDENTITY();";
                     int? id = 0;
-                        var sqlParamId = new SqlParameter { Direction = System.Data.ParameterDirection.Output, ParameterName = "@id", DbType = System.Data.DbType.Int32 };
+                        var sqlParamId = new SqlParameter { Direction = System.Data.ParameterDirection.Output, ParameterName = "@Id", DbType = System.Data.DbType.Int32 };
 
 
                         using (SqlCommand command = new SqlCommand(str, sqlConnection))
@@ -153,11 +153,11 @@ namespace UserDefinedDataType.DAL
                     using (SqlConnection sqlConnection = new SqlConnection(_connectionString))
                     {
                         sqlConnection.Open();
-                        string str = "UPDATE Student " +
-                            "SET FIRSTNAME=@firstName, " +
-                                "LASTNAME=@lastName," +
-                                "MARKS=@marks " +
-                             "WHERE ROLLNO=@rollNo;";
+                        string str = "UPDATE Student1 " +
+                            "SET First_name=@firstName, " +
+                                "Last_name=@lastName," +
+                                "Marks=@marks " +
+                             "WHERE Roll_number=@rollNo;";
 
                         using (SqlCommand command = new SqlCommand(str, sqlConnection))
                         {
@@ -189,7 +189,7 @@ namespace UserDefinedDataType.DAL
                     {
                         sqlConnection.Open();
                         string str = "DELETE Student " + Environment.NewLine +
-                             "WHERE ROLLNO=@rollNo;";
+                             "WHERE Roll_number=@rollNo;";
 
                         using (SqlCommand command = new SqlCommand(str, sqlConnection))
                         {
@@ -207,6 +207,10 @@ namespace UserDefinedDataType.DAL
                 }
                 return isSuccess;
             }
+        public int getStudentCount ()
+        {
+            return 36;
+        }
         }
     }
 

@@ -2,9 +2,10 @@ array=[100000,100,1,2.54,30.48,91.44,160934.4,185200,0.1];
 array2=["KM","M","CM","INCH","FT","YD","MI","NM","MM"];
 function convert()
 {
-  var a =Number(document.getElementById("unit1").value);
-  var b =Number(document.getElementById("unit2").value);
-  var c =document.getElementById("input").value;
-  var d =(array[a]/array[b])*c;
-  document.getElementById("output2").value=d+" "+array2[b];
+    var unit1 = Number($('#unit1').val());
+    var unit2 = Number($('#unit2').val());
+    var c = $("input").val();
+    var d = (array[unit1] / array[unit2]) * c;
+    $("#output2").val(d + " " + array2[unit2]);
+   $("#span").html(d + " " + array2[unit2]);
 }

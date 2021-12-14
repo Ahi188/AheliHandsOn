@@ -1,22 +1,22 @@
-﻿Create Table dbo.Student
+﻿Create Table dbo.Student1
 (
   Id int identity(1,1) primary key,
-  FirstName varchar(50),
+  FirstName nvarchar(50),
   LastName varchar(50),
   RollNo int,
   Marks decimal(10,2)
 )
-Insert Student
-(FirstName, LastName, RollNo, Marks)
+Insert Student1
+(First_name, Last_name, Roll_number, Marks)
 values ('Aheli','Ghosh', 1, 100.00)
 
-select  top 10 * from Student
+select  top 10 * from Student1
 
 Declare @i int=0, @length int,
 @fn varchar(50),
 @ln varchar (50),
 @rollno int,
-@marks decimal(18,2);
+@marks decimal(10,2);
 
 set @i=1;
 set @length=5;
@@ -29,7 +29,7 @@ set @ln = null;
 set @rollno = null; 
 set @marks = null;
 
-select @fn = First_name, @ln = LastName, @rollnno = RollNo, @marks = Marks from Student where ID =@i;
+select @fn = First_name, @ln = Last_name, @rollnno = Roll_number, @marks = Marks from Student1 where ID =@i;
 
 print 'Firstname-' + @fn
 print concat('LastName-', @ln)

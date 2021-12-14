@@ -43,6 +43,7 @@ namespace UserDefinedDataType
             get { return _MarksSecured; }//getter for marks secured
             set { _MarksSecured = value; } //setter for marks secured
         }
+        public int Id { get; set; } 
         public String DateOfBirth {
             get
             {

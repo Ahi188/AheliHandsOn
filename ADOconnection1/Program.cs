@@ -20,8 +20,10 @@ namespace ConnectingToSQLServer
                     {
                         string firstName=dr["First_Name"].ToString();
                         string lastName =dr["Last_Name"].ToString();
+                        string rollnumber = dr["Roll_number"].ToString();
+                        string marks = dr["Marks"].ToString();
 
-                        Console.WriteLine(firstName+" "+lastName);
+                        Console.WriteLine(firstName+" "+lastName+" "+rollnumber+" "+marks);
                     }
                     dr.Close();
                 }
