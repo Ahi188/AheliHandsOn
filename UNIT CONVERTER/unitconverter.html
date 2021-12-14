@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Unit Converter</title>
+    <link rel="stylesheet"  href="StyleSheet1uc.css" />
+    <script src="unitconvertor.js"></script>
+
+</head>
+<body>
+    <div class="header">
+        <h1>LENGTH CONVERTER</h1>
+    </div>
+   <hr class="line" />
+   <div class="form">
+       <form>
+           <!--make a drop down to select which unit to convert from-->
+           <!--make a dropdown to select which unit to convert to-->
+           <!--make a text box for input-->
+           <!--make a textbox for output-->
+           <!--make a submit button-->
+           <div class="select1">
+               <!--unit1-->
+               <label for="unit1">Choose the unit to be converted:</label>
+               <select name="unit1" id="unit1" class="a">
+                   <!--unit1 is the source unit-->
+                   <option value="0">KILOMETRE</option>
+                   <option value="1">METER</option>
+                   <option value="2">CENTIMETER</option>
+                   <option value="3">INCH</option>
+                   <option value="4">FOOT</option>
+                   <option value="5">YARD</option>
+                   <option value="6">MILE</option>
+                   <option value="7">NAUTICAL MILE</option>
+                   <option value="8">MILLIMETRE</option>
+               </select>
+               <br /><br />
+
+               <!--unit2-->
+               <label for="unit2">Choose the desired unit:</label>
+               <select name="unit2" id="unit2" class="a" >
+                   <!--unit2 is the desired unit-->
+                   <option value="0">KILOMETRE</option>
+                   <option value="1">METER</option>
+                   <option value="2">CENTIMETRE</option>
+                   <option value="3">INCH</option>
+                   <option value="4">FOOT</option>
+                   <option value="5">YARD</option>
+                   <option value="6">MILE</option>
+                   <option value="7">NAUTICAL MILE</option>
+                   <option value="8">MILLIMETRE</option>
+               </select>
+               <br /><br />
+           </div>
+           <!-- enter a textbox here for input-->
+           <div class="input">
+             <br>
+               <label for="input" >Enter the Value:</label>
+               <input type="number" id="input" class="a" name="input" />
+
+           </form>
+
+         </div>
+         <br><br><br><br>
+
+         <!-- the evaluate button which performs the conversion function-->
+         <button class="button2" onclick="convert()">Evaluate</button>
+
+          <!--The text box to display the output-->
+         <br />
+           <div class="output">
+               <label for="output" class="a">Converted unit:</label>
+               <input type="text" id="output2" class="a" name="output"  disabled />
+           </div>
+   </div>
+</body>
+</html>

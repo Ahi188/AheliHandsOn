@@ -1,0 +1,67 @@
+﻿body {
+    background-color: slategrey;
+}
+    .header
+    {
+    padding: 60px;
+    text-align: center;
+    background-color: darkslategray;
+    color: white;
+    font-size: 20px;
+
+
+}
+    .line{
+        border-top:3px dashed white;
+    }
+
+        input[type=number]:focus
+{
+    border: 3px solid #555;
+}
+    .select1{
+        width: 800px;
+        height:100px;
+        background-color:slategrey;
+        font-size:30px;
+        font-family:'Times New Roman', Times, serif;
+        padding-left:600px;
+        align-content: center;
+    }
+
+.input {
+    width: 500px;
+    height: 60px;
+    position: center;
+    font-size: 30px;
+    font-family: 'Times New Roman', Times, serif;
+    padding-left: 600px;
+    align-content: center;
+}
+.output{
+    width:500px;
+    height:60px;
+    position:center;
+    font-size:30px;
+    font-family:'Times New Roman', Times, serif;
+    padding-top:20px;
+    padding-left:600px;
+    align-content: center;
+}
+
+.button2{
+  background-color: #4CAF50;
+  font-family: 'Times New Roman', Times, serif;
+  color: white;
+  text-align: center;
+  font-size: 20px;
+  margin-left: 600px;
+  height:65px;
+  width:100px;
+  border-radius: 10px;
+}
+.a{
+  height:40px;
+  font-size:30px;
+
+}
