@@ -1,0 +1,81 @@
+﻿body {
+    background-color: aliceblue;
+    height: auto;
+}
+/*Class Calculator*/
+.calculator {
+    border: 1px solid;
+    padding: 10px;
+    border-radius: 1em;
+    height: 380px;
+    width: 400px;
+    margin: auto;
+    background-color: lightblue;
+    box-shadow: 5px 10px #888888;
+}
+/*Rows of the calculator*/
+.row {
+    text-align: center;
+}
+
+    /*DISPLAY BOX*/
+    .row div.displayscreen {
+        font-family: 'Orbitron';
+        display: table;
+        width: 85%;
+        background-color: #dcdbe1;
+        text-align: right;
+        font-size: 1.5em;
+        min-height: 1.2em;
+        padding-right: 0.5em;
+        border: solid black 0.5px;
+        color: black;
+        border-radius: 5px;
+        height: 70%;
+    }
+
+  /*  .row div.button1 {
+        text-align: center;
+        display: inline-block;
+        border: solid black 1px;
+        background-color: dimgray;
+        font-family: 'Orbitron', sans-serif;
+        color: white;
+        width: 70px;
+        border-radius: 5px;
+        height: 65%;
+        padding: 10px;
+        margin: 7px 5px;
+    }
+.col {
+    text-align: center;
+    display: inline-block;
+    border: solid black 1px;
+    background-color: dimgray;
+    font-family: 'Orbitron', sans-serif;
+    color: white;
+    width: 70px;
+    border-radius: 5px;
+    height: 65%;
+    padding: 10px;
+    margin: 7px 5px;
+}
+    .row div.button1 {
+        margin-left: 250px;
+    }*/
+
+
+    /*Buttons*/
+    .row div {
+        text-align: center;
+        display: inline-block;
+        border: solid black 1px;
+        background-color: dimgray;
+        font-family: 'Orbitron', sans-serif;
+        color: white;
+        width: 70px;
+        border-radius: 5px;
+        height: 70%;
+        padding: 10px 0;
+        margin: 7px 5px;
+    }

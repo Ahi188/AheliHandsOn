@@ -1,0 +1,62 @@
+﻿
+@model System.Collections.Generic.List<WebApplicationDotNetCoreDateTime.BO.StudentBO>
+    @{ 
+        ViewBag.Title = "Student List";
+    }
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    <div class="container">
+        <h2>Student List</h2>
+        <p>Student Information</p>
+        <div class="row">
+            <div class="col-md-2 col-md-offset-10">
+                @Html.ActionLink("Create Student", "CreateStudent")
+            </div>
+        </div>
+        <table class="table">
+            <thread>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Roll Number</th>
+                    <th>Marks Obtained</th>
+                    <th>Date of Birth</th>
+                    <th>Branch</th>
+                </tr>
+            </thread>
+            <tbody>
+                @foreach(var item in Model)
+            {
+                <tr>
+                    <td>@item.FirstName</td>
+                    <td>@item.LastName</td>
+                    <td>@item.Roll</td>
+                    <td>@item.MarksSecured</td>
+                    <td>
+                    @if (item.DateOfBirth.HasValue) {
+                        @item.DateOfBirth.Value.ToString("dd-MM-yyyy");
+                    }
+                    </td>
+                    <td>@item.Branch</td>
+                    <td>
+                        @Html.ActionLink("Edit", "EditStudent", new {id=item.Id})
+                        </td>
+                    <td>
+
+                        @Html.ActionLink("Delete","Delete",new {id=item.Id})
+                    </td>
+                    
+                </tr>
+            }
+            </tbody>
+        </table>
+    
+    </div>
+</body>
+</html>

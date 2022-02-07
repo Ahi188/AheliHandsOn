@@ -1,0 +1,211 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="TrainingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Branch">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Student1">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="First_name" Type="nvarchar" MaxLength="20" />
+          <Property Name="Last_name" Type="varchar" MaxLength="20" />
+          <Property Name="Roll_number" Type="int" />
+          <Property Name="Marks" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="Date_of_Birth" Type="datetime" />
+          <Property Name="BranchId" Type="int" />
+        </EntityType>
+        <Association Name="FK__Student1__Branch__5CD6CB2B">
+          <End Role="Branch" Type="Self.Branch" Multiplicity="0..1" />
+          <End Role="Student1" Type="Self.Student1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Branch">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Student1">
+              <PropertyRef Name="BranchId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="CreateStudent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="firstname" Type="nvarchar" Mode="In" />
+          <Parameter Name="lastname" Type="varchar" Mode="In" />
+          <Parameter Name="rollno" Type="int" Mode="In" />
+          <Parameter Name="marks" Type="decimal" Mode="In" />
+        </Function>
+        <Function Name="Fn_GetEmail" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="varchar">
+          <Parameter Name="Fn" Type="varchar" Mode="In" />
+          <Parameter Name="Ln" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="Fn_GetStudent" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="Id" Type="int" Nullable="false" />
+                <Property Name="First_name" Type="nvarchar" MaxLength="20" />
+                <Property Name="Last_name" Type="varchar" MaxLength="20" />
+                <Property Name="Roll_number" Type="int" />
+                <Property Name="Marks" Type="decimal" Precision="10" Scale="2" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
+        <Function Name="GetName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="name" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="TrainingModelStoreContainer">
+          <EntitySet Name="Branch" EntityType="Self.Branch" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Student1" EntityType="Self.Student1" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Student1__Branch__5CD6CB2B" Association="Self.FK__Student1__Branch__5CD6CB2B">
+            <End Role="Branch" EntitySet="Branch" />
+            <End Role="Student1" EntitySet="Student1" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TrainingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <ComplexType Name="Fn_GetStudent_Result">
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="First_name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Last_name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Roll_number" Type="Int32" />
+          <Property Name="Marks" Type="Decimal" Precision="10" Scale="2" />
+        </ComplexType>
+        <EntityType Name="Student1">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="First_name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Last_name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Roll_number" Type="Int32" />
+          <Property Name="Marks" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="Date_of_Birth" Type="DateTime" Precision="3" />
+          <Property Name="BranchId" Type="Int32" />
+          <NavigationProperty Name="Branch" Relationship="TrainingModel.FK__Student1__Branch__5CD6CB2B" FromRole="Student1" ToRole="Branch" />
+        </EntityType>
+        <EntityContainer Name="TrainingEntitiesConnectionString" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Student1" EntityType="Self.Student1" />
+          <FunctionImport Name="Fn_GetStudent" IsComposable="true" ReturnType="Collection(TrainingModel.Fn_GetStudent_Result)" />
+          <FunctionImport Name="CreateStudent" ReturnType="Collection(Decimal)">
+            <Parameter Name="firstname" Mode="In" Type="String" />
+            <Parameter Name="lastname" Mode="In" Type="String" />
+            <Parameter Name="rollno" Mode="In" Type="Int32" />
+            <Parameter Name="marks" Mode="In" Type="Decimal" />
+          </FunctionImport>
+          <FunctionImport Name="GetName" ReturnType="Collection(TrainingModel.GetName_Result)">
+          <Parameter Name="name" Mode="In" Type="String" />
+          </FunctionImport>
+          <EntitySet Name="Branch" EntityType="TrainingModel.Branch" />
+          <AssociationSet Name="FK__Student1__Branch__5CD6CB2B" Association="TrainingModel.FK__Student1__Branch__5CD6CB2B">
+            <End Role="Branch" EntitySet="Branch" />
+            <End Role="Student1" EntitySet="Student1" />
+          </AssociationSet>
+        </EntityContainer>
+        <ComplexType Name="GetName_Result">
+          <Property Type="Int32" Name="productId" Nullable="true" />
+          <Property Type="String" Name="productName" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="productPrice" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="Branch">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Student1" Relationship="TrainingModel.FK__Student1__Branch__5CD6CB2B" FromRole="Branch" ToRole="Student1" />
+        </EntityType>
+        <Association Name="FK__Student1__Branch__5CD6CB2B">
+          <End Type="TrainingModel.Branch" Role="Branch" Multiplicity="0..1" />
+          <End Type="TrainingModel.Student1" Role="Student1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Branch">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Student1">
+              <PropertyRef Name="BranchId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TrainingModelStoreContainer" CdmEntityContainer="TrainingEntitiesConnectionString">
+          <EntitySetMapping Name="Student1">
+            <EntityTypeMapping TypeName="TrainingModel.Student1">
+              <MappingFragment StoreEntitySet="Student1">
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="First_name" ColumnName="First_name" />
+                <ScalarProperty Name="Last_name" ColumnName="Last_name" />
+                <ScalarProperty Name="Roll_number" ColumnName="Roll_number" />
+                <ScalarProperty Name="Marks" ColumnName="Marks" />
+                <ScalarProperty Name="Date_of_Birth" ColumnName="Date_of_Birth" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionName="TrainingModel.Store.Fn_GetStudent" FunctionImportName="Fn_GetStudent">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TrainingModel.Fn_GetStudent_Result">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="First_name" ColumnName="First_name" />
+                <ScalarProperty Name="Last_name" ColumnName="Last_name" />
+                <ScalarProperty Name="Roll_number" ColumnName="Roll_number" />
+                <ScalarProperty Name="Marks" ColumnName="Marks" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="CreateStudent" FunctionName="TrainingModel.Store.CreateStudent" />
+          <FunctionImportMapping FunctionImportName="GetName" FunctionName="TrainingModel.Store.GetName">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TrainingModel.GetName_Result">
+                <ScalarProperty Name="productId" ColumnName="productId" />
+                <ScalarProperty Name="productName" ColumnName="productName" />
+                <ScalarProperty Name="productPrice" ColumnName="productPrice" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="Branch">
+            <EntityTypeMapping TypeName="TrainingModel.Branch">
+              <MappingFragment StoreEntitySet="Branch">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

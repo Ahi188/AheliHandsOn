@@ -1,0 +1,17 @@
+﻿create table Branch
+(Id int identity(1,1) primary key,
+Name varchar(100) not null,)
+
+alter table Student1
+add BranchId int null foreign key References Branch(Id)
+
+select * from Student1
+
+select * from Branch
+insert into Branch
+values
+('CSE'),
+('IT'),
+('EEE'),
+('Civil'),
+('ME')

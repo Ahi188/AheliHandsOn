@@ -1,0 +1,115 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <meta charset="utf-8" />
+    <title>Snake Game</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!--<link rel="javascript" href="scriptsnake.js" />-->
+    <meta charset="UTF-=8" name="viewport" content="width=device-width, initial-scale=1" />
+    <script>
+        $(document).ready(function () {
+            //Canvas stuff
+            var w = $("#canvas").width();
+            var ctx = canvas.getContext("2d");//getting the canvas context to start drawing
+            var w = $("#canvas").width(); //saving the width
+            var h = $("#canvas").height(); //savng the height
+
+            //Lets save the cell width in a variable for easy control
+            var cw = 10; //cell width
+            var d; //direction
+            var food;
+            var score;
+            var level;
+
+            //Lets create the snake now
+            var snake_array; //an array of cells to make up the snake
+
+            function init() {
+                d = "right"; //default direction
+                create_snake();
+                create_food(); //Now we can see the food particle
+                //finally lets display the score
+                score = 0;
+                level = 1;
+
+                //Lets move the snake now using a timer which will trigger the paint function
+                //every 60ms
+                if (typeof game_loop != "undefined") clearInterval(game_loop);
+                game_loop = setInterval(paint, 100);
+            }
+            init();
+
+            function create_snake() {
+                var length = 5; //Length of the snake
+                snake_array = []; //Empty array to start with
+                for (var i = length - 1; i >= 0; i--) {
+                    //This will create a horizontal snake starting from the top left
+                    snake_array.push({ x: i, y: 0 }); // pushing coordinates
+                }
+            }
+
+            //Lets create the food now
+            function create_food() {
+                food = {
+                    x: Math.round(Math.random() * (w - cw) / cw),
+                    y: Math.round(Math.random() * (h - cw) / cw),
+                };
+                //This will create a cell with x/y between 0-49
+                //Because there are 50(500/10) positions accross the rows and columns
+            }
+            //Lets paint the snake now
+            function paint() {
+                //To avoid the snake trail we need to paint the BG on every frame
+                //Lets paint the canvas now
+                ctx.fillStyle = "#228B22"; //canvas bg
+                ctx.fillRect(0, 0, w, h);
+                ctx.strokeStyle = "green";
+                ctx.strokeRect(0, 0, w, h);
+
+                //The logic is simple
+                //Pop out the tail cell and place it infront of the head cell
+                var nx = snake_array[0].x;
+                var ny = snake_array[0].y;
+
+                //These were the position of the head cell.
+                //We will increment it to get the new head position
+                //Lets add proper direction based movement now
+                if (d == "right") nx++;
+                else if (d == "left") nx--;
+                else if (d == "up") ny--;
+                else if (d == "down") ny++;
+
+                //Lets add the game-over clauses now
+                //This will restart the game if the snake hits the wall
+                //Lets add the code for body collision
+                //Now if the head of the snake bumps into its body, the game will restart
+                if (nx == -1 || nx == w / cw || ny == -1 || ny == h / cw || check_collision(nx, ny, snake_array))
+                {
+                    //restart game
+                    init();
+                    //Lets organize the code a bit now.
+                    return;
+                }
+
+            }
+    </script>
+</head>
+
+<body>
+    <div class="glow">
+        <h1>FEED THE SNAKE</h1>
+    </div>
+    
+    <canvas id="canvas" width="560" height="500"></canvas>
+   <div class="Row">
+       <div class="Col">
+           <h1>LEVEL:</h1>
+           <h1>SCORE:</h1>
+       </div>
+
+   </div>
+</body>
+</html>

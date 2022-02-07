@@ -1,0 +1,215 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ChosenAnswer">
+          <Key>
+            <PropertyRef Name="Ansid" />
+          </Key>
+          <Property Name="Ansid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Answer" Type="nvarchar(max)" />
+          <Property Name="Qid" Type="int" />
+          <Property Name="Userid" Type="int" />
+        </EntityType>
+        <EntityType Name="OnlineExam">
+          <Key>
+            <PropertyRef Name="Qid" />
+          </Key>
+          <Property Name="Qid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Question" Type="nvarchar" MaxLength="200" />
+          <Property Name="Option1" Type="nvarchar" MaxLength="200" />
+          <Property Name="Option2" Type="nvarchar" MaxLength="200" />
+          <Property Name="Option3" Type="nvarchar" MaxLength="200" />
+          <Property Name="Option4" Type="nvarchar" MaxLength="200" />
+          <Property Name="CorrectAns" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="Usertable">
+          <Key>
+            <PropertyRef Name="Userid" />
+          </Key>
+          <Property Name="Userid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="char" MaxLength="100" />
+          <Property Name="LastName" Type="char" MaxLength="100" />
+          <Property Name="Email" Type="varchar" MaxLength="100" />
+          <Property Name="Marks" Type="int" />
+        </EntityType>
+        <Association Name="FK__ChosenAns__Useri__0A9D95DB">
+          <End Role="Usertable" Type="Self.Usertable" Multiplicity="0..1" />
+          <End Role="ChosenAnswer" Type="Self.ChosenAnswer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usertable">
+              <PropertyRef Name="Userid" />
+            </Principal>
+            <Dependent Role="ChosenAnswer">
+              <PropertyRef Name="Userid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ChosenAnswe__Qid__07C12930">
+          <End Role="OnlineExam" Type="Self.OnlineExam" Multiplicity="0..1" />
+          <End Role="ChosenAnswer" Type="Self.ChosenAnswer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OnlineExam">
+              <PropertyRef Name="Qid" />
+            </Principal>
+            <Dependent Role="ChosenAnswer">
+              <PropertyRef Name="Qid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="ChosenAnswer" EntityType="Self.ChosenAnswer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OnlineExam" EntityType="Self.OnlineExam" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usertable" EntityType="Self.Usertable" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__ChosenAns__Useri__0A9D95DB" Association="Self.FK__ChosenAns__Useri__0A9D95DB">
+            <End Role="Usertable" EntitySet="Usertable" />
+            <End Role="ChosenAnswer" EntitySet="ChosenAnswer" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ChosenAnswe__Qid__07C12930" Association="Self.FK__ChosenAnswe__Qid__07C12930">
+            <End Role="OnlineExam" EntitySet="OnlineExam" />
+            <End Role="ChosenAnswer" EntitySet="ChosenAnswer" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ChosenAnswer">
+          <Key>
+            <PropertyRef Name="Ansid" />
+          </Key>
+          <Property Name="Ansid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Answer" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Qid" Type="Int32" />
+          <NavigationProperty Name="OnlineExam" Relationship="Self.FK__ChosenAnswe__Qid__07C12930" FromRole="ChosenAnswer" ToRole="OnlineExam" />
+          <Property Name="Userid" Type="Int32" />
+          <NavigationProperty Name="Usertable" Relationship="Model.FK__ChosenAns__Useri__0A9D95DB" FromRole="ChosenAnswer" ToRole="Usertable" />
+        </EntityType>
+        <EntityType Name="OnlineExam">
+          <Key>
+            <PropertyRef Name="Qid" />
+          </Key>
+          <Property Name="Qid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Question" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Option1" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Option2" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Option3" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Option4" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CorrectAns" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ChosenAnswer" Relationship="Self.FK__ChosenAnswe__Qid__07C12930" FromRole="OnlineExam" ToRole="ChosenAnswer" />
+        </EntityType>
+        <Association Name="FK__ChosenAnswe__Qid__07C12930">
+          <End Role="OnlineExam" Type="Self.OnlineExam" Multiplicity="0..1" />
+          <End Role="ChosenAnswer" Type="Self.ChosenAnswer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OnlineExam">
+              <PropertyRef Name="Qid" />
+            </Principal>
+            <Dependent Role="ChosenAnswer">
+              <PropertyRef Name="Qid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ChosenAnswer" EntityType="Self.ChosenAnswer" />
+          <EntitySet Name="OnlineExam" EntityType="Self.OnlineExam" />
+          <AssociationSet Name="FK__ChosenAnswe__Qid__07C12930" Association="Self.FK__ChosenAnswe__Qid__07C12930">
+            <End Role="OnlineExam" EntitySet="OnlineExam" />
+            <End Role="ChosenAnswer" EntitySet="ChosenAnswer" />
+          </AssociationSet>
+          <EntitySet Name="Usertable" EntityType="Model.Usertable" />
+          <AssociationSet Name="FK__ChosenAns__Useri__0A9D95DB" Association="Model.FK__ChosenAns__Useri__0A9D95DB">
+            <End Role="Usertable" EntitySet="Usertable" />
+            <End Role="ChosenAnswer" EntitySet="ChosenAnswer" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Usertable">
+          <Key>
+            <PropertyRef Name="Userid" />
+          </Key>
+          <Property Name="Userid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Marks" Type="Int32" />
+          <NavigationProperty Name="ChosenAnswer" Relationship="Model.FK__ChosenAns__Useri__0A9D95DB" FromRole="Usertable" ToRole="ChosenAnswer" />
+        </EntityType>
+        <Association Name="FK__ChosenAns__Useri__0A9D95DB">
+          <End Type="Model.Usertable" Role="Usertable" Multiplicity="0..1" />
+          <End Type="Model.ChosenAnswer" Role="ChosenAnswer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usertable">
+              <PropertyRef Name="Userid" />
+            </Principal>
+            <Dependent Role="ChosenAnswer">
+              <PropertyRef Name="Userid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="ChosenAnswer">
+            <EntityTypeMapping TypeName="Model.ChosenAnswer">
+              <MappingFragment StoreEntitySet="ChosenAnswer">
+                <ScalarProperty Name="Userid" ColumnName="Userid" />
+                <ScalarProperty Name="Ansid" ColumnName="Ansid" />
+                <ScalarProperty Name="Answer" ColumnName="Answer" />
+                <ScalarProperty Name="Qid" ColumnName="Qid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OnlineExam">
+            <EntityTypeMapping TypeName="Model.OnlineExam">
+              <MappingFragment StoreEntitySet="OnlineExam">
+                <ScalarProperty Name="Qid" ColumnName="Qid" />
+                <ScalarProperty Name="Question" ColumnName="Question" />
+                <ScalarProperty Name="Option1" ColumnName="Option1" />
+                <ScalarProperty Name="Option2" ColumnName="Option2" />
+                <ScalarProperty Name="Option3" ColumnName="Option3" />
+                <ScalarProperty Name="Option4" ColumnName="Option4" />
+                <ScalarProperty Name="CorrectAns" ColumnName="CorrectAns" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usertable">
+            <EntityTypeMapping TypeName="Model.Usertable">
+              <MappingFragment StoreEntitySet="Usertable">
+                <ScalarProperty Name="Marks" ColumnName="Marks" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Userid" ColumnName="Userid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

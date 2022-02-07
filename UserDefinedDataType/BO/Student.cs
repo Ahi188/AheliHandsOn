@@ -11,7 +11,7 @@ namespace UserDefinedDataType
         private string _FirstName; 
         private string _LastName;
         private int? _Roll; 
-        private double? _MarksSecured;
+        private decimal? _MarksSecured;
         private DateTime? _DOB;
         public string FirstName 
         { 
@@ -38,7 +38,7 @@ namespace UserDefinedDataType
         }
 
        
-        public double? MarksSecured
+        public decimal? MarksSecured
         {
             get { return _MarksSecured; }//getter for marks secured
             set { _MarksSecured = value; } //setter for marks secured

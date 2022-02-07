@@ -1,0 +1,58 @@
+﻿@model WebApplicationDotNetCoreDateTime.BO.StudentBO
+
+@{
+    ViewBag.Title = "EditStudent";
+}
+
+<h2>Edit Student</h2>
+
+<h4>StudentBO</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="EditStudent">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="FirstName" class="control-label"></label>
+                <input asp-for="FirstName" class="form-control" />
+                <span asp-validation-for="FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LastName" class="control-label"></label>
+                <input asp-for="LastName" class="form-control" />
+                <span asp-validation-for="LastName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Roll" class="control-label"></label>
+                <input asp-for="Roll" class="form-control" />
+                <span asp-validation-for="Roll" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MarksSecured" class="control-label"></label>
+                <input asp-for="MarksSecured" class="form-control" />
+                <span asp-validation-for="MarksSecured" class="text-danger"></span>
+            </div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="DateOfBirth" class="control-label"></label>
+                <input asp-for="DateOfBirth" class="form-control" />
+                <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Branch" class="control-label"></label>
+                <input asp-for="Branch" class="form-control" />
+                <span asp-validation-for="Branch" class="text-danger"></span>
+            </div>
+           
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="GetAllStudents">Back to List</a>
+</div>
+
+

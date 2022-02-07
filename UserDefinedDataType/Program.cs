@@ -5,9 +5,9 @@ using UserDefinedDataType.DAL;
 using UserDefinedDataType;
 
 var dal = new StudentDAL();
-    var studentlist=new List <Student>();
+var studentlist=new List <Student>();
 studentlist = dal.GetStudents();
-dal.CreateStudentWithSP(new Student
+/*dal.CreateStudentWithSP(new Student
 {
     FirstName ="Ranen",
     LastName ="Ghosh",
@@ -21,8 +21,7 @@ var x = dal.UpdateStudent(new Student
     LastName = "Roy",
     Roll = 27,
     MarksSecured = 100
-});
-
+});*/
 
     int size = 0;
 
@@ -41,8 +40,6 @@ for (; ; )
 
         int i = Convert.ToInt32(Console.ReadLine());
         size = i;
-        //studentlist = new List<Student> { };
-        //int j = 1;
 
         if (i != 0)
         {
@@ -63,9 +60,10 @@ for (; ; )
                 student.Roll = Convert.ToInt32(Console.ReadLine());
 
                 Console.WriteLine("Enter Marks Secured");
-                student.MarksSecured = Convert.ToDouble(Console.ReadLine()); 
+                student.MarksSecured = Convert.ToDecimal(Console.ReadLine()); 
+
                 studentlist.Add(student);
-                 x = dal.CreateStudent(student);
+                var x = dal.CreateStudent(student);
             }
             
         }
@@ -74,15 +72,17 @@ for (; ; )
 
     else if (input == "2")
     {
-        int count= dal.getStudentCount();
+        int count= dal.GetStudentCount();
         Console.WriteLine("Thank You for sharing your Information. Your Details are as follows:");
         for (int i = 0; i < count; i++)
         {
-            Student student = studentlist[i];
-            Console.WriteLine($"FirstName: {student.FirstName}");
-            Console.WriteLine($"LastName: {student.LastName}");
-            Console.WriteLine($"Roll Number: {student.Roll}");
-            Console.WriteLine($"Marks Secured: {student.MarksSecured}");
+            
+                Student student = studentlist[i];
+                Console.WriteLine($"FirstName: {student.FirstName}");
+                Console.WriteLine($"LastName: {student.LastName}");
+                Console.WriteLine($"Roll Number: {student.Roll}");
+                Console.WriteLine($"Marks Secured: {student.MarksSecured}");
+            
         }
     }
     else if (input == "3")
@@ -99,8 +99,10 @@ for (; ; )
         Console.WriteLine("Enter the Roll Number of the Student you want to find");
         var rollNo = Convert.ToInt32(Console.ReadLine());
         var student1 = studentlist.Where(x => x.Roll == rollNo).FirstOrDefault(); //Find a particular student
-        var name = student1.FirstName + student1.LastName;
+        var name = student1.FirstName +" "+ student1.LastName;
+        var marks= student1.MarksSecured;
         Console.WriteLine(name);
+        Console.WriteLine("Marks Secured: ");Console.WriteLine(marks);
 
     }
     else if(input == "5")
@@ -122,53 +124,5 @@ for (; ; )
 }
    
    
-/*
-static void main1()
-{
-    var length = 10;
-    var i = 0;
-    for (i = 0; i < length; i++)
-    {
-        //code exectution block
-    }
-
-    length = 5;
-    
 
 
-
-    while (i <= length)
-    {
-        // code execution block
-        i++;
-    }
-
-
-
-
-    do
-    {
-        //code block
-        i++;
-    } while (i <= length);
-
-
-
-    var studentlist = new List<Student>();
-    foreach(var item in studentlist) // foreach (Student item in studentlist)
-    {
-        // execute code
-        Console.WriteLine(item.FirstName);
-        item.LastName = "Bla bla"; // lastname of  student will be changed. 
-    }
-
-    //Find specific student
-    var rollNo=Convert.ToInt32(Console.ReadLine());
-   var student = studentlist.Where(x => x.Roll == rollNo).FirstOrDefault();
-
-    var firstname = Console.ReadLine();
-    studentlist.Where(x => x.FirstName == firstname).FirstOrDefault();
-
-    var students = studentlist.Where(x => x.FirstName == firstname).ToList; //for unique names ( doubt) 
-}
-*/

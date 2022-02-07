@@ -36,7 +36,7 @@ namespace UserDefinedDataType.DAL
                             student.FirstName = reader["First_Name"] as string;
                             student.LastName = reader["Last_Name"] as string;
                             student.Roll = reader["Roll_number"] as int?;
-                            student.MarksSecured = reader["Marks"] as double?;
+                            student.MarksSecured = Convert.ToDecimal(reader["Marks"]);
                             studentList.Add(student);
                         }
 
@@ -65,7 +65,7 @@ namespace UserDefinedDataType.DAL
                             student.FirstName = reader["First_name"] as string;
                             student.LastName = reader["Last_name"] as string;
                             student.Roll = reader["Roll_number"] as int?;
-                            student.MarksSecured = reader["Marks"] as double?;
+                            student.MarksSecured = reader["Marks"] as decimal?;
                         }
 
                         reader.Close();
@@ -75,7 +75,8 @@ namespace UserDefinedDataType.DAL
                 return student;
             }
 
-            public bool CreateStudent(Student student)
+
+        public bool CreateStudent(Student student)
             {
                 bool isSuccess = true;
                 try
@@ -156,7 +157,7 @@ namespace UserDefinedDataType.DAL
                         string str = "UPDATE Student1 " +
                             "SET First_name=@firstName, " +
                                 "Last_name=@lastName," +
-                                "Marks=@marks " +
+                                "Marks=@marks," +
                              "WHERE Roll_number=@rollNo;";
 
                         using (SqlCommand command = new SqlCommand(str, sqlConnection))
@@ -164,7 +165,7 @@ namespace UserDefinedDataType.DAL
                             command.Parameters.AddWithValue("@firstName", student.FirstName);
                             command.Parameters.AddWithValue("@lastName", student.LastName);
                             command.Parameters.AddWithValue("@rollNo", student.Roll);
-                            command.Parameters.AddWithValue("@marks", student.MarksSecured);
+                            command.Parameters.AddWithValue("@marks", Convert.ToDecimal(student.MarksSecured));
                             var result = command.ExecuteNonQuery();
                             sqlConnection.Close();
                         }
@@ -207,9 +208,26 @@ namespace UserDefinedDataType.DAL
                 }
                 return isSuccess;
             }
-        public int getStudentCount ()
+        public int GetStudentCount ()
         {
-            return 36;
+            
+            int count=0;
+            string sql = "select COUNT(*) from Student1;";
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                SqlCommand cmd=new SqlCommand(sql,conn);
+                try
+                {
+                    conn.Open();
+                    count=(Int32)cmd.ExecuteScalar();
+                }
+                catch(Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+            }
+
+            return count;
         }
         }
     }

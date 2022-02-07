@@ -45,7 +45,7 @@ create procedure dbo.CreateStudent(
 @firstname varchar (50),
 @lastname varchar (50),
 @rollno int,
-@marks decimal(18,2))
+@marks decimal(10,2))
 as
 begin
 
