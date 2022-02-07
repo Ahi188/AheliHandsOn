@@ -14,23 +14,23 @@ namespace QuizApplicationMVCDotNetFramework.DAL
         {
             _db = new Entities();
         }
-        public bool CreateUser(UserBO user)
+        public int CreateUser(UserBO user)
         {
             
                 var success = true;
+            int id=0;
                 try
                 {
-                    
-
                     _db.Usertable.Add(new Usertable
                     {
                         FirstName = user.FirstName,
                         LastName = user.LastName,
                         Email = user.Email,
-                        
+                        Userguid = user.UserGuid,
 
                     });
                     _db.SaveChanges();
+                 id = _db.Usertable.Max(u => u.Userid);
                 }
                 catch (Exception ex)
                 {
@@ -38,7 +38,7 @@ namespace QuizApplicationMVCDotNetFramework.DAL
                     success = false;
                     throw;
                 }
-                return success;
+                return id;
         }
         //public bool CalculateMarks()
         //{

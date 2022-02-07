@@ -25,6 +25,7 @@ namespace QuizApplicationMVCDotNetFramework.DB
         public string LastName { get; set; }
         public string Email { get; set; }
         public Nullable<int> Marks { get; set; }
+        public string Userguid { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChosenAnswer> ChosenAnswer { get; set; }

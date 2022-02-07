@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "GetQuiz";
 }
-
+<link href="~/Content/GetQuiz.css" rel="stylesheet" />
 <h2>GetQuiz</h2>
 
 <p>
@@ -11,65 +11,66 @@
 </p>
 @using (Html.BeginForm("GetQuiz", "Quiz", FormMethod.Post))
 {
-    <div>
-        <table class="table">
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Qid)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Question)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Option1)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Option2)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Option3)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Option4)
-                </th>
-                <th></th>
-            </tr>
-          
+<div>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Qid)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Question)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Option1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Option2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Option3)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Option4)
+            </th>
+            <th></th>
+        </tr>
 
 
 
-            @Html.HiddenFor(model => model.Qid)
-            <tr>
-                <td>
-                    @Html.DisplayFor(model => model.Qid)
-                </td>
-                <td>
-                    @Html.DisplayFor(model => model.Question)
-                </td>
-                <td>
 
-                    @Html.RadioButtonFor(model => model.Option, Model.Option1)
-                    @Html.DisplayFor(model => model.Option1)
-                </td>
-                <td>
-                    @Html.RadioButtonFor(model => model.Option, Model.Option2)
-                    @Html.DisplayFor(model => model.Option2)
-                </td>
-                <td>
-                    @Html.RadioButtonFor(model => model.Option, Model.Option3)
-                    @Html.DisplayFor(model => model.Option3)
-                </td>
-                <td>
-                    @Html.RadioButtonFor(model => model.Option, Model.Option4)
-                    @Html.DisplayFor(model => model.Option4)
-                </td>
+        @Html.HiddenFor(model => model.Qid)
+        <tr>
+            <td>
+                @Html.DisplayFor(model => model.Qid)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Question)
+            </td>
+            <td>
 
-            </tr>
+                @Html.RadioButtonFor(model => model.Option, Model.Option1)
+                @Html.DisplayFor(model => model.Option1)
+            </td>
+            <td>
+                @Html.RadioButtonFor(model => model.Option, Model.Option2)
+                @Html.DisplayFor(model => model.Option2)
+            </td>
+            <td>
+                @Html.RadioButtonFor(model => model.Option, Model.Option3)
+                @Html.DisplayFor(model => model.Option3)
+            </td>
+            <td>
+                @Html.RadioButtonFor(model => model.Option, Model.Option4)
+                @Html.DisplayFor(model => model.Option4)
+            </td>
+
+        </tr>
 
 
-        </table>
-        <input type="submit" value="Next" />
-    </div>
+    </table>
+    <input type="submit" value="Next" />
+    <input type="submit" value="Previous" />
+</div>
    
 }
 

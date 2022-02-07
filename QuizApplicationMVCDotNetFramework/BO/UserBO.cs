@@ -12,6 +12,7 @@ namespace QuizApplicationMVCDotNetFramework.BO
         private string _LastName;
         private string _Email;
         private int _Marks;
+        private string _userguid;
 
         public int? UserId
         {
@@ -33,6 +34,18 @@ namespace QuizApplicationMVCDotNetFramework.BO
         {
             get { return _Email; }
             set { _Email = value; }
+        }
+        public String UserGuid
+        { get { return _userguid; }
+            set { _userguid = value; }
+          }
+
+        private String myVar;
+
+        public String MyProperty
+        {
+            get { return myVar; }
+            set { myVar = value; }
         }
 
         //public int Marks

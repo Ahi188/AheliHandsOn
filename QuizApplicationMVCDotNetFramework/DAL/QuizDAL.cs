@@ -40,6 +40,7 @@ namespace QuizApplicationMVCDotNetFramework.DAL
                     Ansid = quiz.Ansid,
                     Answer = quiz.Option,
                     Qid = quiz.Qid,
+                    
                 });
                 _db.SaveChanges();
             }

@@ -29,8 +29,9 @@ namespace QuizApplicationMVCDotNetFramework.Controllers
         {
             if (!string.IsNullOrEmpty(user.FirstName) && !string.IsNullOrEmpty(user.LastName) && !string.IsNullOrEmpty(user.Email))
             {
-                _UserDAL.CreateUser(user);
-
+                user.UserGuid = Convert.ToString(new Guid());
+                Session["usersessionid"] = Convert.ToString(user.UserGuid);
+                 _UserDAL.CreateUser(user);
                 return RedirectToAction("GetQuiz","Quiz"); //redirect to quiz page
             }
             else
