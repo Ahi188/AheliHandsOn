@@ -33,14 +33,22 @@ namespace QuizApplicationMVCDotNetFramework.Controllers
             
         }
         [HttpPost]
-        public ActionResult GetQuiz(QuizBO quiz) //get the answers update them to DB
+        public ActionResult GetQuiz(QuizBO quiz,string submit) //get the answers update them to DB
         {
             var questions =_quizDAL.GetQuiz();
-            quiz.Userid = Convert.ToInt32(Session["usersessionid"]);
+            quiz.Userguid = Convert.ToString(Session["usersessionid"]);
+            quiz.Userid = _quizDAL.GetUserId(quiz.Userguid);
             var ans2 = _quizDAL.GetAnswer(quiz);
-            //if button is 0/1-> assign a int value-> if condition here
-            return RedirectToAction("GetQuiz",new { Qid = quiz.Qid + 1 });
-            //hidden variable concept -> assign value 0,1 ->  Quid-1 for prev
+            if(submit =="Next")
+            { 
+                return RedirectToAction("GetQuiz", new { Qid = quiz.Qid + 1 });
+            }
+            
+            else
+            {
+                return RedirectToAction("GetQuiz", new { Qid = quiz.Qid - 1 });
+            }
+            
 
         }
 

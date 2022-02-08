@@ -40,6 +40,7 @@ namespace QuizApplicationMVCDotNetFramework.DAL
                     Ansid = quiz.Ansid,
                     Answer = quiz.Option,
                     Qid = quiz.Qid,
+                    Userid=quiz.Userid,
                     
                 });
                 _db.SaveChanges();
@@ -55,7 +56,12 @@ namespace QuizApplicationMVCDotNetFramework.DAL
             
 
         }
-        
-            
+        public int GetUserId(string UserGuid)
+        {
+            int userid=_db.Usertable.Where(u=>u.Userguid==UserGuid).Select(x=>x.Userid).FirstOrDefault();
+            return userid;
         }
+       
+
+    }
     }

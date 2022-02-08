@@ -29,11 +29,13 @@ namespace QuizApplicationMVCDotNetFramework.Controllers
         {
             if (!string.IsNullOrEmpty(user.FirstName) && !string.IsNullOrEmpty(user.LastName) && !string.IsNullOrEmpty(user.Email))
             {
-                user.UserGuid = Convert.ToString(new Guid());
+                user.UserGuid = Convert.ToString(Guid.NewGuid());
                 Session["usersessionid"] = Convert.ToString(user.UserGuid);
                  _UserDAL.CreateUser(user);
                 return RedirectToAction("GetQuiz","Quiz"); //redirect to quiz page
             }
+            //new user or existing user. 
+            //or check if email exists, generate same user guid and assign it to the session.
             else
             {
                 ViewBag.ValidationError = "Please Fill in First Name, Last Name & Email Id.";

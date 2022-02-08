@@ -11,7 +11,7 @@
 </p>
 @using (Html.BeginForm("GetQuiz", "Quiz", FormMethod.Post))
 {
-<div>
+<div class="border">
     <table class="table">
         <tr>
             <th>
@@ -68,11 +68,17 @@
 
 
     </table>
-    <input type="submit" value="Next" />
-    <input type="submit" value="Previous" />
+    <div class="button">
+        <input type="submit" name="submit" id="submit" value="Next" />
+        <input type="submit" name="submit" id="previous" value="Previous" />
+    </div>
 </div>
    
 }
+//request.query string. fetch qid value, disable prev button. 
+//show submit when q no is 20. 
+//last page display answers ans marks
+//check email id instead of adding multiple users. assign the same user id. 
 
 
 

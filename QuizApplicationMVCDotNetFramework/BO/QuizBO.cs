@@ -18,6 +18,7 @@ namespace QuizApplicationMVCDotNetFramework.BO
         public string Option { get; set; }
         public int Ansid { get; set; }
         public int Userid { get; set; }
+        public string Userguid { get; set; }
 
         //public Dictionary<int, string> Options { get; set; }
     }
