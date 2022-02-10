@@ -113,9 +113,14 @@ namespace QuizApplicationMVCDotNetFramework.DAL
             return result;
 
         }
-        //public IEnumerable<AnswerBO> GetMarks(int Userid)
-        //{
+        public int GetMarks(int Userid)
+        {
+            var marks = (from a in _db.OnlineExam
+                         join b in _db.ChosenAnswer on a.CorrectAns equals b.Answer
+                         where b.Userid == Userid).Count();
+                        
+            return marks;
             
-        //}
+        }
     }
 }
