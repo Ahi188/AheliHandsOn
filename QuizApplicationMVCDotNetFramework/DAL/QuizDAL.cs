@@ -94,6 +94,7 @@ namespace QuizApplicationMVCDotNetFramework.DAL
         //return quiz;
 
         //}
+       
         public IEnumerable<AnswerBO> GetResult(int Userid)
         {
             var result = from a in _db.OnlineExam
@@ -112,6 +113,9 @@ namespace QuizApplicationMVCDotNetFramework.DAL
             return result;
 
         }
-
+        //public IEnumerable<AnswerBO> GetMarks(int Userid)
+        //{
+            
+        //}
     }
 }

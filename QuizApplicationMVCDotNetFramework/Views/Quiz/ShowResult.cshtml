@@ -6,51 +6,59 @@
 
 <h2>ShowResult</h2>
 
-<div>
-    <h4>AnswerBO</h4>
-    <hr />
-    @*<dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.UserId)
-        </dt>
+@*@using (Html.BeginForm("GetResult", "Quiz", FormMethod.Post))*@
 
-        <dd>
-            @Html.DisplayFor(model => model.UserId)
-        </dd>
+@*@foreach (var item in Model)*@
+{
+    @*var row_id = item.QId;
+    <tr class="role" id="tr_Role_@Model.Count()">*@
+<h4>AnswerBO @Model.Count()</h4>
+        <div>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().UserId)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.QId)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.FirstOrDefault().UserId, new { @style = "width:50px;" })
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.QId)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().QId)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Question)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.FirstOrDefault().QId, new { @style = "width:50px;" })
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Question)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().Question)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Answer)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.FirstOrDefault().Question, new { @style = "width:50px;" })
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Answer)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().Answer)
+                </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ChosenAnswer)
-        </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.FirstOrDefault().Answer, new { @style = "width:50px;" })
+                </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.ChosenAnswer)
-        </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.FirstOrDefault().ChosenAnswer)
+                </dt>
 
-    </dl>*@
-</div>
+                <dd>
+                    @Html.DisplayFor(model => model.FirstOrDefault().ChosenAnswer, new { @style = "width:50px;" })
+                </dd>
 
+            </dl>
+
+        </div>
+    </tr>
+}
 

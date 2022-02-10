@@ -70,7 +70,7 @@ namespace QuizApplicationMVCDotNetFramework.Controllers
             //var Userid = _quizDAL.GetUserId(Userguid);
             IEnumerable<AnswerBO> result = _quizDAL.GetResult(42);
             return View("ShowResult",result);
-            ViewBag marks = _quizDAL.GetMarks(Userid);
+            //ViewBag marks = _quizDAL.GetMarks(Userid);
         }
 
     }
