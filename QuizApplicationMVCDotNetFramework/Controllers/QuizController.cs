@@ -22,6 +22,7 @@ namespace QuizApplicationMVCDotNetFramework.Controllers
         {
             _quizDAL = new QuizDAL();
         }
+       
 
         // GET: Demo
         [HttpGet]
@@ -32,29 +33,53 @@ namespace QuizApplicationMVCDotNetFramework.Controllers
             return View("~/Views/Quiz/GetQuiz.cshtml", quiz);
             
         }
+
         [HttpPost]
-        public ActionResult GetQuiz(QuizBO quiz,string submit) //get the answers update them to DB
+        public ActionResult GetQuiz(QuizBO quiz, string submit) //get the answers update them to DB
         {
-            var questions =_quizDAL.GetQuiz();
+            var questions = _quizDAL.GetQuiz();
             quiz.Userguid = Convert.ToString(Session["usersessionid"]);
             quiz.Userid = _quizDAL.GetUserId(quiz.Userguid);
             var ans2 = _quizDAL.GetAnswer(quiz);
-            if(submit =="Next")
-            { 
+            //increment to next question
+            if (submit == "Next")
+            {
                 return RedirectToAction("GetQuiz", new { Qid = quiz.Qid + 1 });
             }
-            
-            else
+            //decrement to previous question
+            else if(submit== "Previous")
             {
                 return RedirectToAction("GetQuiz", new { Qid = quiz.Qid - 1 });
             }
-            
 
+            else
+            {
+                return RedirectToAction("ShowResult");
+            }
         }
+            [HttpGet]
+            public ActionResult GetMarks()
+            {
+            //var question = _quizDAL.GetCorrectAns(1);
+                return View("~/Views/Quiz/ResultPage.cshtml");
+            }
+        public ActionResult ShowResult()
+        {
+            var Userguid = Convert.ToString(Session["usersessionid"]);
+
+            //var Userid = _quizDAL.GetUserId(Userguid);
+            IEnumerable<AnswerBO> result = _quizDAL.GetResult(42);
+            return View("ShowResult",result);
+            ViewBag marks = _quizDAL.GetMarks(Userid);
+        }
+
+    }
+
+
 
 
 
 
     }
-}
+
 

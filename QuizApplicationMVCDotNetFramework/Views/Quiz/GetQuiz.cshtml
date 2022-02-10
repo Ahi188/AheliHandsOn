@@ -68,15 +68,32 @@
 
 
     </table>
-    <div class="button">
+
+    @if (Convert.ToInt32(Request.QueryString["Qid"]) > 1 && Convert.ToInt32(Request.QueryString["Qid"]) < 5)
+    {
+
+        <div class="button">
+            <input type="submit" name="submit" id="previous" value="Previous" />
+            <input type="submit" name="submit" id="submit" value="Next" />
+
+        </div>
+    }
+    else if (Convert.ToInt32(Request.QueryString["Qid"]) == 5)
+    {
+        <div class="button">
+            <input type="submit" name="submit" id="previous" value="Previous" />
+            <input type="submit" name="submit" id="submit" value="Submit" />
+        </div>
+    }
+    else
+    {
         <input type="submit" name="submit" id="submit" value="Next" />
-        <input type="submit" name="submit" id="previous" value="Previous" />
-    </div>
+    }
+
 </div>
    
 }
-//request.query string. fetch qid value, disable prev button. 
-//show submit when q no is 20. 
+
 //last page display answers ans marks
 //check email id instead of adding multiple users. assign the same user id. 
 

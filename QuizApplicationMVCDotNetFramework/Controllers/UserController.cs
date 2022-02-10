@@ -23,7 +23,7 @@ namespace QuizApplicationMVCDotNetFramework.Controllers
             return View(new UserBO());
         }
 
-       
+
         [HttpPost] //post data from ui to server
         public ActionResult CreateUser(UserBO user)
         {
@@ -31,8 +31,8 @@ namespace QuizApplicationMVCDotNetFramework.Controllers
             {
                 user.UserGuid = Convert.ToString(Guid.NewGuid());
                 Session["usersessionid"] = Convert.ToString(user.UserGuid);
-                 _UserDAL.CreateUser(user);
-                return RedirectToAction("GetQuiz","Quiz"); //redirect to quiz page
+                _UserDAL.CreateUser(user);
+                return RedirectToAction("GetQuiz", "Quiz"); //redirect to quiz page
             }
             //new user or existing user. 
             //or check if email exists, generate same user guid and assign it to the session.
