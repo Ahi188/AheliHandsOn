@@ -1,101 +1,86 @@
 ﻿@model QuizApplicationMVCDotNetFramework.BO.QuizBO
-
-@{
-    ViewBag.Title = "GetQuiz";
-}
 <link href="~/Content/GetQuiz.css" rel="stylesheet" />
-<h2>GetQuiz</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+<h2>Question</h2>
+
+
 @using (Html.BeginForm("GetQuiz", "Quiz", FormMethod.Post))
 {
-<div class="border">
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Qid)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Question)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Option1)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Option2)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Option3)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Option4)
-            </th>
-            <th></th>
-        </tr>
+    @Html.HiddenFor(model => model.Qid)
+
+    <div class="container-fluid">
+        <!--Question number-->
+        <div class="row">
+            <div class="col-md-9" style="font-size:50px">Question Number @Html.DisplayFor(model => model.Qid):</div>
+        </div>
+        <br />
+        <!--Question-->
+        <div class="row">
+            <div class="col-md-12" style="background-color:floralwhite;"><h2>@Html.DisplayFor(model => model.Question)</h2></div>
+        </div>
+        <br />
+        <div class="row">
+
+            <!--Option1-->
+            <div class="col-md-6" style="background-color:white;">
+                <h2>@Html.RadioButtonFor(model => model.Option, Model.Option1)@Html.DisplayFor(model => model.Option1)</h2>
+            </div>
+
+            <!--Option2-->
+            <div class="col-md-6" style="background-color:white;">
+                <h2>@Html.RadioButtonFor(model => model.Option, Model.Option2)@Html.DisplayFor(model => model.Option2)</h2>
+            </div>
+        </div>
 
 
+        <div class="row">
+            <!--Option3-->
+            <div class="col-md-6" style="background-color:white;">
+                <h2>@Html.RadioButtonFor(model => model.Option, Model.Option3)@Html.DisplayFor(model => model.Option3)</h2>
+            </div>
 
-
-        @Html.HiddenFor(model => model.Qid)
-        <tr>
-            <td>
-                @Html.DisplayFor(model => model.Qid)
-            </td>
-            <td>
-                @Html.DisplayFor(model => model.Question)
-            </td>
-            <td>
-
-                @Html.RadioButtonFor(model => model.Option, Model.Option1)
-                @Html.DisplayFor(model => model.Option1)
-            </td>
-            <td>
-                @Html.RadioButtonFor(model => model.Option, Model.Option2)
-                @Html.DisplayFor(model => model.Option2)
-            </td>
-            <td>
-                @Html.RadioButtonFor(model => model.Option, Model.Option3)
-                @Html.DisplayFor(model => model.Option3)
-            </td>
-            <td>
-                @Html.RadioButtonFor(model => model.Option, Model.Option4)
-                @Html.DisplayFor(model => model.Option4)
-            </td>
-
-        </tr>
-
-
-    </table>
-
-    @if (Convert.ToInt32(Request.QueryString["Qid"]) > 1 && Convert.ToInt32(Request.QueryString["Qid"]) < 5)
-    {
-
-        <div class="button">
-            <input type="submit" name="submit" id="previous" value="Previous" />
-            <input type="submit" name="submit" id="submit" value="Next" />
+            <!--Option4-->
+            <div class="col-md-6" style="background-color:white;">
+                <h2>@Html.RadioButtonFor(model => model.Option, Model.Option4)@Html.DisplayFor(model => model.Option4)</h2>
+            </div>
 
         </div>
-    }
-    else if (Convert.ToInt32(Request.QueryString["Qid"]) == 5)
-    {
-        <div class="button">
-            <input type="submit" name="submit" id="previous" value="Previous" />
-            <input type="submit" name="submit" id="submit" value="Submit" />
-        </div>
-    }
-    else
-    {
-        <input type="submit" name="submit" id="submit" value="Next" />
-    }
+    </div>
+    <br />
+    <div class="row">
+        @if (Convert.ToInt32(Request.QueryString["Qid"]) > 1 && Convert.ToInt32(Request.QueryString["Qid"]) < 5)
+        {
 
-</div>
-   
+            <div class="col-md-8">
+                <input type="submit" name="submit" id="previous" value="Previous" class="btn btn-info button" @*style="width:100px"*@ />
+            </div>
+            <div class="col-md-4">
+                <input type="submit" name="submit" id="submit" value="Next" class="btn btn-info button" />
+
+            </div>
+        }
+        else if (Convert.ToInt32(Request.QueryString["Qid"]) == 5)
+        {
+            <div class="col-md-8">
+                <input type="submit" name="submit" id="previous" value="Previous" class="btn btn-info button" />
+                </div>
+                <div class="col-md-4">
+                <input type="submit" name="submit" id="submit" value="Submit" class="btn btn-info button" />
+            </div>
+        }
+        else
+        {
+    <div class="col-md-4 col-md-offset-8">
+        <input type="submit" name="submit" id="submit" value="Next" class="btn btn-info button" />
+    </div>
+        }
+    </div>
+
 }
 
-//last page display answers ans marks
-//check email id instead of adding multiple users. assign the same user id. 
+
+
+
 
 
 

@@ -19,7 +19,7 @@ namespace QuizApplicationMVCDotNetFramework.DB
         public Nullable<int> Qid { get; set; }
         public Nullable<int> Userid { get; set; }
     
-        public virtual OnlineExam OnlineExam { get; set; }
         public virtual Usertable Usertable { get; set; }
+        public virtual OnlineExam OnlineExam { get; set; }
     }
 }

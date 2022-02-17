@@ -5,60 +5,43 @@
 }
 
 <h2>ShowResult</h2>
-
-@*@using (Html.BeginForm("GetResult", "Quiz", FormMethod.Post))*@
-
-@*@foreach (var item in Model)*@
-{
-    @*var row_id = item.QId;
-    <tr class="role" id="tr_Role_@Model.Count()">*@
 <h4>AnswerBO @Model.Count()</h4>
-        <div>
-            <hr />
-            <dl class="dl-horizontal">
-                <dt>
-                    @Html.DisplayNameFor(model => model.FirstOrDefault().UserId)
-                </dt>
+<table class="table">
+    <thread class="thread-light">
+        <tr>
+            <th scope="col">@Html.DisplayNameFor(model => model.FirstOrDefault().UserId)</th>
+            <th scope="col">@Html.DisplayNameFor(model => model.FirstOrDefault().QId)</th>
+            <th scope="col">@Html.DisplayNameFor(model => model.FirstOrDefault().Question)</th>
+            <th scope="col">@Html.DisplayNameFor(model => model.FirstOrDefault().Answer)</th>
+            <th scope="col">@Html.DisplayNameFor(model => model.FirstOrDefault().ChosenAnswer)</th>
+            <th></th>
+        </tr>
+    </thread>
+    <tbody>
 
-                <dd>
-                    @Html.DisplayFor(model => model.FirstOrDefault().UserId, new { @style = "width:50px;" })
-                </dd>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <th scope="row">@Html.DisplayFor(model => item.UserId, new { @style = "width:50px;" })</th>
+                <td>@Html.DisplayFor(model => item.QId, new { @style = "width:50px;" })</td>
+                <td>@Html.DisplayFor(model => item.Question, new { @style = "width:50px;" })</td>
+                <td>@Html.DisplayFor(model => item.Answer, new { @style = "width:50px;" })</td>
+                <td>@Html.DisplayFor(model => item.ChosenAnswer, new { @style = "width:50px;" })</td>
+                <td>
+                    @if (item.Answer == item.ChosenAnswer)
+                    {
+                        <img src="~/Content/Images/tick.jpg" width="25" />
+                    }
+                    else
+                    {
+                        <img src="~/Content/Images/cross.jpg" width="25" />
+                    }
+                </td>
+            </tr>
+        }
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.FirstOrDefault().QId)
-                </dt>
+    </tbody>
+    
+ </table>
 
-                <dd>
-                    @Html.DisplayFor(model => model.FirstOrDefault().QId, new { @style = "width:50px;" })
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.FirstOrDefault().Question)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.FirstOrDefault().Question, new { @style = "width:50px;" })
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.FirstOrDefault().Answer)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.FirstOrDefault().Answer, new { @style = "width:50px;" })
-                </dd>
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.FirstOrDefault().ChosenAnswer)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.FirstOrDefault().ChosenAnswer, new { @style = "width:50px;" })
-                </dd>
-
-            </dl>
-
-        </div>
-    </tr>
-}
 

@@ -113,14 +113,77 @@ namespace QuizApplicationMVCDotNetFramework.DAL
             return result;
 
         }
-        public int GetMarks(int Userid)
-        {
-            var marks = (from a in _db.OnlineExam
-                         join b in _db.ChosenAnswer on a.CorrectAns equals b.Answer
-                         where b.Userid == Userid).Count();
-                        
-            return marks;
+        //public int GetMarks(int Userid)
+        //{
+            //var marks = (from a in _db.OnlineExam
+            //             join b in _db.ChosenAnswer on a.CorrectAns equals b.Answer
+            //             where b.Userid == Userid).Count();
+            //int count = _db.OnlineExam.Join(_db.ChosenAnswer, c => c.CorrectAns, p => p.Answer, (c, p) => new { OnlineExam= c, ChosenAnswer = p }).Count();
+
+            //return count;
             
+        //}
+        public ResultBO GetResultVM(int userid)
+        {
+            ResultBO resultBO = null;
+
+            resultBO = _db.Usertable.Where(p => p.Userid == userid)
+                       .Select(x => new ResultBO
+                       {
+                           FirstName = x.FirstName,
+                           LastName = x.LastName,
+                           UserId=x.Userid,
+                           Email = x.Email,
+
+                           Marks = (_db.ChosenAnswer.Where(u => u.Userid == userid).Join(
+                                    _db.OnlineExam,
+                                    q => new { QidColumn = (int)q.Qid, AnsColumn = (string)q.Answer },
+                                    u => new { QidColumn = (int)u.Qid, AnsColumn = (string)u.CorrectAns },
+                                    (q, u) => new { u.ChosenAnswer }).Count()),
+
+                           //Marks = (from a in _db.ChosenAnswer
+                           //         join h in _db.OnlineExam on
+                           //         new
+                           //         {
+                           //             field1 = (int)a.Qid,
+                           //             field2 = (string)a.Answer
+                           //         }
+                           //         equals
+                           //         new
+                           //         {
+                           //             field1 = (int)h.Qid,
+                           //             field2 = (string)h.CorrectAns
+                           //         }
+                           //         where a.Userid == userid 
+                           //         select a).Count(),
+
+                           Fullmarks = (_db.OnlineExam.Count()),
+
+                           Answers = (from a in _db.OnlineExam
+                                      join h in _db.ChosenAnswer on a.Qid equals h.Qid
+                                      join c in _db.Usertable on h.Userid equals c.Userid
+                                      where c.Userid == userid
+                                      select new AnswerBO
+                                      {
+                                          QId = a.Qid,
+                                          Question = a.Question,
+                                          Answer = a.CorrectAns,
+                                          ChosenAnswer = h.Answer,
+                                          UserId = c.Userid
+                                      })
+                       }).FirstOrDefault();
+            return resultBO;
+        }
+
+        public int GetMarks(int userid)
+        {
+            int marks = (_db.ChosenAnswer.Where(u => u.Userid == userid).Join(
+            _db.OnlineExam,
+                     q => new { QidColumn = (int)q.Qid, AnsColumn = (string)q.Answer },
+                     u => new { QidColumn = (int)u.Qid, AnsColumn = (string)u.CorrectAns },
+                     (q, u) => new { u.ChosenAnswer }).Count());
+            return marks;
         }
     }
 }
+    

@@ -131,6 +131,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="BO\AnswerBO.cs" />
     <Compile Include="BO\QuizBO.cs" />
+    <Compile Include="BO\ResultBO.cs" />
     <Compile Include="BO\UserBO.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\QuizController.cs" />
@@ -232,9 +233,12 @@
     <Content Include="Views\Quiz\GetQuiz.cshtml" />
     <Content Include="Views\Quiz\ResultPage.cshtml" />
     <Content Include="Views\Quiz\ShowResult.cshtml" />
+    <Content Include="Views\Quiz\ShowResultVM.cshtml" />
+    <Content Include="Views\Quiz\GetQuiz1.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\Images\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>

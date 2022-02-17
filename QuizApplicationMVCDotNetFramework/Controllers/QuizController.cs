@@ -54,11 +54,11 @@ namespace QuizApplicationMVCDotNetFramework.Controllers
 
             else
             {
-                return RedirectToAction("ShowResult");
+                return RedirectToAction("ShowResultVM");
             }
         }
             [HttpGet]
-            public ActionResult GetMarks()
+            public ActionResult GetMarks() //
             {
             //var question = _quizDAL.GetCorrectAns(1);
                 return View("~/Views/Quiz/ResultPage.cshtml");
@@ -67,10 +67,18 @@ namespace QuizApplicationMVCDotNetFramework.Controllers
         {
             var Userguid = Convert.ToString(Session["usersessionid"]);
 
-            //var Userid = _quizDAL.GetUserId(Userguid);
-            IEnumerable<AnswerBO> result = _quizDAL.GetResult(42);
-            return View("ShowResult",result);
+            var Userid = _quizDAL.GetUserId(Userguid);
+            IEnumerable<AnswerBO> result = _quizDAL.GetResult(Userid); //42
+            return View("ShowResultVM", result);
             //ViewBag marks = _quizDAL.GetMarks(Userid);
+        }
+        public ActionResult ShowResultVM()
+        {
+            var Userguid = Convert.ToString(Session["usersessionid"]);
+            var Userid=_quizDAL.GetUserId(Userguid);
+            ResultBO result=_quizDAL.GetResultVM(Userid);
+            return View("ShowResultVM", result);
+            //RedirectToAction("ShowResultVM", result);
         }
 
     }

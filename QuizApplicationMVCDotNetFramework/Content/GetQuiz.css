@@ -1,4 +1,4 @@
-﻿body {
+﻿/*body {
     background-color: wheat;
 }
 .border{
@@ -7,10 +7,11 @@
     background-color: white;
     text-align: center;
 
-        }
+        }*/
 .button{
     
     text-align:center;
+    width:100px;
 }
 
 
