@@ -141,21 +141,7 @@ namespace QuizApplicationMVCDotNetFramework.DAL
                                     u => new { QidColumn = (int)u.Qid, AnsColumn = (string)u.CorrectAns },
                                     (q, u) => new { u.ChosenAnswer }).Count()),
 
-                           //Marks = (from a in _db.ChosenAnswer
-                           //         join h in _db.OnlineExam on
-                           //         new
-                           //         {
-                           //             field1 = (int)a.Qid,
-                           //             field2 = (string)a.Answer
-                           //         }
-                           //         equals
-                           //         new
-                           //         {
-                           //             field1 = (int)h.Qid,
-                           //             field2 = (string)h.CorrectAns
-                           //         }
-                           //         where a.Userid == userid 
-                           //         select a).Count(),
+                           
 
                            Fullmarks = (_db.OnlineExam.Count()),
 

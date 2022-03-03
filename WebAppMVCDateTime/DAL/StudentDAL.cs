@@ -145,7 +145,7 @@ namespace WebAppMVCDateTime.DAL
                 st.Marks = (decimal?)student.MarksSecured;
                 //st.Branch = student.Branch;
                 _db.Student1.Add(st);
-                _db.Entry(st).State = System.Data.Entity.EntityState.Modified;
+                _db.Entry(st).State = System.Data.Entity.EntityState.Modified; //Whenever we edit the entry
                 _db.SaveChanges();
             }
             catch (Exception ex)

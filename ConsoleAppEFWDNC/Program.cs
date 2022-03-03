@@ -103,7 +103,7 @@ namespace ConsoleAppEFWDNC
                 }
                 else if (input == "3")
                 {
-                    Console.WriteLine("Enter the First Name of the sutend you want to find.");
+                    Console.WriteLine("Enter the First Name of the student you want to find.");
                     var firstname = Console.ReadLine();
                     var person = studentlist.Where(x => x.FirstName == firstname).FirstOrDefault();
                     Console.WriteLine("Latst name : "); Console.WriteLine(person.LastName);
