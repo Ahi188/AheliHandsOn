@@ -21,12 +21,28 @@
         /*menu card section*/
         .row{
             text-align:center;
-            padding-block:10px 10px;
-            height:200px;
+            padding-block:5px 5px;
+            height:100px;
             border-color:whitesmoke;
         }
+        .radio1{
+           
+            text-align:left;
+            height:30px;
+            padding:2px 5px 7px 5px;
+        }
+        .radio2 {
+            
+            text-align: left;
+            height: 30px;
+            padding: 2px 5px 7px 5px;
+        }
+        .subsection{
+            border-block:double;
+            text-align:center;
+        }
         .menulist{
-            padding-block:10px 10px;
+            padding-block:5px 5px;
             text-align:center;
         }
         /*gradient for second section*/
@@ -310,6 +326,38 @@
                     
             </table>
                 
+
+         </div>
+
+         <div class="subsection" style="color:azure">
+             <p style="color:floralwhite">Add a Dish</p>
+             <input type="button" name="add" value="ADD" onclick="showDiv()" />
+             <div id="addDish" style="display:none;" class="addDish">
+                 
+                     <div class="radio1">
+                         <input type="radio" id="cusine1" name="cusine" value="1">
+                         <label for="cusine1">Indian</label><br>
+                         <input type="radio" id="cusine2" name="cusine" value="2">
+                         <label for="cusine2">Continental</label><br>
+                     </div>
+                     <div class="radio2">
+                         <input type="radio" id="choice1" name="choice" value="1">
+                         <label for="html">Vegetarian</label><br>
+                         <input type="radio" id="choice2" name="choice" value="2">
+                         <label for="css">Non-Vegetarian</label><br>
+                     </div>
+                     <div class="textbox1">
+
+                         <label for="dname">Dish name:</label><br>
+                         <input type="text" id="dname" name="dname"><br>
+
+                         <label for="dprice">Dish Price:</label><br>
+                         <input type="text" id="dprice" name="dprice"><br><br>
+                         </div>
+                     <button id="btnSubmit">Submit</button>
+                 
+         </div>
+
 
          </div>
     </div>
