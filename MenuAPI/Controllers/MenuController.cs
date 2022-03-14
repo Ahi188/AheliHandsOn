@@ -7,7 +7,7 @@ using MenuAPI.DB;
 namespace MenuAPI.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController]
+    //[ApiController]
     public class MenuController : ControllerBase
     {
         private readonly ILogger<MenuController> _logger;

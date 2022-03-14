@@ -20,6 +20,7 @@ $(document).ready(function () {
         }
     });
 
+
     $('#menuList').change(function () {
         var menuselected = $('#menuList').val();
         //alert(menuselected);
@@ -71,25 +72,26 @@ $(document).ready(function () {
     //javascript obj(onclick function of submit button)-extract data, pass the object in data.
     $('#btnSubmit').click(function () {
 
-        var dishname = $('#txtdname').val();
-        var dishprice = $('#txtdpice').val();
-        var menuid = $('#input:radio[name=cusine]:checked').val();
-        var choiceid = $('#input:radio[name=choice]:checked').val();
-
+        var dishname = $('#dname').val();
+        var dishprice = $('#dprice').val();
+        var menuid = $('input:radio[name=cusine]:checked').val();
+        var choiceid = $('input:radio[name=choice]:checked').val();
+       
         var formdata = {
-            dishId:0,
-            dishName:dishname,
-            price:dishprice,
-            menuID:menuid,
-            choiceID:choiceid,
+            DishId:0,
+            DishName: dishname,
+            Price: dishprice,
+            MenuID: menuid,
+            ChoiceID: choiceid,
         };
         console.log(formdata);
         $.ajax({
 
             url: 'https://localhost:44327/api/Menu/AddDish',
             type: 'POST',
-            contentType: 'application/json',
-            data: { dish:formdata }, //data=attribute
+           /* contentType: 'application/json',*/
+            /*data: '{"dishId":0, "dishName": string,"price":0;,"menuID":0,"choiceID":0   }',*/
+            data: formdata, //data=attribute
             success: function (response) { // response from api, not the attribute
                 
                 console.log(response);
