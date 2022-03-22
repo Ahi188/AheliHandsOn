@@ -63,15 +63,7 @@ namespace QuizApplicationMVCDotNetFramework.Controllers
             //var question = _quizDAL.GetCorrectAns(1);
                 return View("~/Views/Quiz/ResultPage.cshtml");
             }
-        //public ActionResult ShowResult()
-        //{
-        //    var Userguid = Convert.ToString(Session["usersessionid"]);
-
-        //    var Userid = _quizDAL.GetUserId(Userguid);
-        //    IEnumerable<AnswerBO> result = _quizDAL.GetResult(Userid); //42
-        //    return View("ResultPage", result);/*("ShowResultVM", result);*/
-        //    //ViewBag marks = _quizDAL.GetMarks(Userid);
-        //}
+       
         public ActionResult ShowResultVM()
         {
             var Userguid = Convert.ToString(Session["usersessionid"]);

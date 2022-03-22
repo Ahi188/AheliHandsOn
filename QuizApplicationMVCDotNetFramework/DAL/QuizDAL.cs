@@ -62,38 +62,7 @@ namespace QuizApplicationMVCDotNetFramework.DAL
             return userid;
         }
 
-        //public QuizBO GetCorrectAns(int id)
-        //{
-
-        //    var quiz = _db.OnlineExam.Where(x => x.Qid == id).Select(x => new QuizBO
-        //    {
-        //        Qid = x.Qid,
-        //        Question = x.Question,
-        //        CorrectAns=x.CorrectAns, //correct ans
-
-        //    }).FirstOrDefault();
-
-        //    var chosen = _db.ChosenAnswer.Where(x => x.Qid == id).Select(x => new QuizBO
-        //    {
-        //        Qid = (int)x.Qid,
-        //        Answer = x.Answer, //given ans
-
-        //    }).FirstOrDefault();
-
-        //var marks = 0;
-        ////if (quiz != null)
-        ////    if(QuizBO.Qid != 0 || )            
-
-        //foreach (var i in _db.OnlineExam) //for each qid in Online exam
-        //{
-        //    QuizBO result=_db.ChosenAnswer.Where(a=>a.Qid==i.Qid).Select(a=> new QuizBO
-        //    {
-
-        //    })
-        //}
-        //return quiz;
-
-        //}
+       
        
         public IEnumerable<AnswerBO> GetResult(int Userid)
         {
@@ -113,16 +82,7 @@ namespace QuizApplicationMVCDotNetFramework.DAL
             return result;
 
         }
-        //public int GetMarks(int Userid)
-        //{
-            //var marks = (from a in _db.OnlineExam
-            //             join b in _db.ChosenAnswer on a.CorrectAns equals b.Answer
-            //             where b.Userid == Userid).Count();
-            //int count = _db.OnlineExam.Join(_db.ChosenAnswer, c => c.CorrectAns, p => p.Answer, (c, p) => new { OnlineExam= c, ChosenAnswer = p }).Count();
-
-            //return count;
-            
-        //}
+      
         public ResultBO GetResultVM(int userid)
         {
             ResultBO resultBO = null;

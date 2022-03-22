@@ -27,6 +27,15 @@ namespace StudentWcfService
 
         [OperationContract]
         StudentInfoResponse CreateStudent(StudentInfoRequest request);
+        
+        [OperationContract]
+        StudentInfoResponse UpdateStudent(StudentInfoRequest request);
+
+        [OperationContract]
+        StudentInfoResponse DeleteStudent(StudentInfoRequest request);
+
+
+
     }
 
 
@@ -36,6 +45,7 @@ namespace StudentWcfService
     {
         bool boolValue = true;
         string stringValue = "Hello ";
+       
 
         [DataMember]
         public bool BoolValue
@@ -50,5 +60,6 @@ namespace StudentWcfService
             get { return stringValue; }
             set { stringValue = value; }
         }
+      
     }
 }

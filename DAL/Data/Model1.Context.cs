@@ -25,7 +25,7 @@ namespace DAL.Data
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Branch> Branches { get; set; }
+        public virtual DbSet<Branch> Branch { get; set; }
         public virtual DbSet<Student1> Student1 { get; set; }
     }
 }

@@ -13,6 +13,7 @@ namespace BO
     {
         [MessageHeader]
         public HeaderInfo Header { get; set; }
+
         [MessageBodyMember]
         public StudentBO Body { get; set; }
     }

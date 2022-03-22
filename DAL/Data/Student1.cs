@@ -20,6 +20,7 @@ namespace DAL.Data
         public Nullable<int> Roll_number { get; set; }
         public Nullable<decimal> Marks { get; set; }
         public Nullable<System.DateTime> Date_of_Birth { get; set; }
+        public Nullable<int> BranchId { get; set; }
     
         public virtual Branch Branch { get; set; }
     }

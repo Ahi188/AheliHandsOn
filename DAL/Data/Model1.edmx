@@ -67,17 +67,26 @@
           <Property Name="Roll_number" Type="Int32" />
           <Property Name="Marks" Type="Decimal" Precision="10" Scale="2" />
           <Property Name="Date_of_Birth" Type="DateTime" Precision="3" />
+          <Property Name="BranchId" Type="Int32" />
           <NavigationProperty Name="Branch" Relationship="Self.FK__Student1__Branch__5CD6CB2B" FromRole="Student1" ToRole="Branch" />
         </EntityType>
         <Association Name="FK__Student1__Branch__5CD6CB2B">
           <End Role="Branch" Type="Self.Branch" Multiplicity="0..1" />
           <End Role="Student1" Type="Self.Student1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Branch">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Student1">
+              <PropertyRef Name="BranchId" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Branches" EntityType="Self.Branch" />
+          <EntitySet Name="Branch" EntityType="Self.Branch" />
           <EntitySet Name="Student1" EntityType="Self.Student1" />
           <AssociationSet Name="FK__Student1__Branch__5CD6CB2B" Association="Self.FK__Student1__Branch__5CD6CB2B">
-            <End Role="Branch" EntitySet="Branches" />
+            <End Role="Branch" EntitySet="Branch" />
             <End Role="Student1" EntitySet="Student1" />
           </AssociationSet>
         </EntityContainer>
@@ -87,7 +96,7 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities">
-          <EntitySetMapping Name="Branches">
+          <EntitySetMapping Name="Branch">
             <EntityTypeMapping TypeName="Model.Branch">
               <MappingFragment StoreEntitySet="Branch">
                 <ScalarProperty Name="Id" ColumnName="Id" />
@@ -104,18 +113,10 @@
                 <ScalarProperty Name="Roll_number" ColumnName="Roll_number" />
                 <ScalarProperty Name="Marks" ColumnName="Marks" />
                 <ScalarProperty Name="Date_of_Birth" ColumnName="Date_of_Birth" />
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="FK__Student1__Branch__5CD6CB2B" TypeName="Model.FK__Student1__Branch__5CD6CB2B" StoreEntitySet="Student1">
-            <EndProperty Name="Branch">
-              <ScalarProperty Name="Id" ColumnName="BranchId" />
-            </EndProperty>
-            <EndProperty Name="Student1">
-              <ScalarProperty Name="Id" ColumnName="Id" />
-            </EndProperty>
-            <Condition IsNull="false" ColumnName="BranchId" />
-          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -130,8 +131,8 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="true" />
-        <DesignerProperty Name="IncludeForeignKeysInModel" Value="false" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
