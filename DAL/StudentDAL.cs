@@ -87,6 +87,12 @@ namespace DAL
                 var students = _db.Student1.Where(x => x.Roll_number == request.Body.Roll_number);
                 _db.Student1.RemoveRange(students);
                 _db.SaveChanges();
+                student.Header = new HeaderInfo
+                {
+
+                    CallStatus = "Success",
+                    TransactionID = request?.Header?.TransactionID,
+                };
             }
             catch (Exception ex)
             {
